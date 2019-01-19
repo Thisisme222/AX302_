@@ -1,0 +1,18 @@
+body{
+color: 	rgb(75,0,130);
+background-color: rgb(115, 194,251);
+font-family: spencer;
+  text-shadow:2px 2px 5px green;
+}
+#google{
+width:150px;
+}
+
+#instagram{
+	width:150px;
+}
+
+#twitter{
+	width:150px;
+}
+
