@@ -16,6 +16,7 @@ WebFontConfig = {
   }
 
 };
+
 function preload(){
   game.load.image('sky', 'assets/sky.png');
   game.load.image('ground', 'assets/platform.png');
@@ -50,13 +51,13 @@ function create(){
 	var style = {font: "bold 32px Press Start 2P", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
 	//positioning the score
 	scorelabel = game.add.text(300,560, "Score: ", style);
-	scoretext = game.add.text(420, 560, score,style);
+	scoretext = game.add.text(500, 560, score,style);
 	scorelabel.setShadow(3,3,'rgba(0,0,0,0.5)',2);
 	scoretext.setShadow(3,3,'rgba(0,0,0,0.5)',2);
 
 	//positioning the lives
 	lifelabel = game.add.text(10,5, "Lives: ", style);
-	lifetext = game.add.text(120,5, life,style);
+	lifetext = game.add.text(200,5, life,style);
 	lifelabel.setShadow(3,3,'rgba(0,0,0,0.5)',2);
 	lifetext.setShadow(3,3,'rgba(0,0,0,0.5)',2);
 
@@ -97,15 +98,15 @@ function create(){
 	enterKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	
 	  var style2 = {
-	    font: "15px Press Start 2P",
+	    font: "30px Press Start 2P",
 	    fill: "#fff",
 	    boundsAlignH: "center",
 	    boundsAlignV: "middle"
 	  };
 
-	goText = game.add.text(0,0,'GAME OVER! \n You scored " + score+"\n INSERT COIN"+"\n \n PRESS ENTER TO START',style2);
-	goText.setSHadow(3,3,'rgba(0,0,0,0.5)',2);
-	goText.setTextBounds(100,200,800,100);
+	goText = game.add.text(0,0,"",style2);
+	goText.setShadow(3,3,'rgba(0,0,0,0.5)',2);
+	goText.setTextBounds(30,190,800,100);
 	goText.visible =false;
 
 }
@@ -161,7 +162,7 @@ function collectStar(player,star){
 	//remove the star and reset to the top
 	star.kill();
 	star.reset(Math.floor(Math.random()*750),0)
-	if(scroe%10==0){
+	if(score%10==0){
 		health=healths.create(Math.floor(Math.random()*750),0,'health');
 		health.body.gravity.y = 200;
 		health.body.bounce.y = 0.2;
@@ -195,6 +196,7 @@ scorelabel.visible = false;
   scoretext.visible = false;
   lifelabel.visible = false;
   lifetext.visible = false;
+  goText.setText('GAME OVER! \n YOU SCORE=' + score +'\n \n \n \n INSERT COIN'+'\n \n PRESS ENTER TO START');
    goText.visible = true;
 
 enterKey.onDown.addOnce(restartGame);
@@ -208,7 +210,7 @@ function collectHealth(player,health){
 function restartGame(){
 	stars.callAll('kill');
 	healths.callAll('kill');
-	diamonds.callAll('kill');
+	//diamonds.callAll('kill');
 	player.reset(32,400);
 	score=0;
 	life=3;
